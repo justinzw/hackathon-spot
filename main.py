@@ -37,9 +37,8 @@ def main():
                                  sleep_after_point_reached=1)
         time.sleep(3)
 
-        spot.dust_off(yaws=[0.4, 0],
-                                 pitches=[0.6, 0],
-                                 rolls=[0.8, 0])
+        spot.make_stance(10,10)
+
         time.sleep(3)
 
         # Make Spot to move by goal_x meters forward and goal_y meters left
