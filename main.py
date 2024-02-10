@@ -37,6 +37,12 @@ def main():
                                  sleep_after_point_reached=1)
         time.sleep(3)
 
+        spot.move_head_in_points(yaws=[0.4, 0],
+                                 pitches=[0.6, 0],
+                                 rolls=[0.8, 0],
+                                 sleep_after_point_reached=1)
+        time.sleep(3)
+
         # Make Spot to move by goal_x meters forward and goal_y meters left
         spot.move_to_goal(goal_x=0.5, goal_y=0)
         time.sleep(3)
