@@ -13,8 +13,8 @@ SPOT_PASSWORD = "2zqa8dgw7lor"#os.environ['SPOT_PASSWORD']
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def call_openai(prompt):
-    response = openai.Completion.create(
-        engine="text-davinci-002",  # Choose the engine as per your requirement
+    response = openai.create_completion(
+        engine="text-davinci-002",  # Update the engine name if needed, based on available models
         prompt=prompt,
         temperature=0.7,
         max_tokens=150
