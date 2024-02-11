@@ -49,6 +49,37 @@ def main():
         spot.move_by_velocity_control(v_x=-0.3, v_y=0, v_rot=0, cmd_duration=2)
         time.sleep(3)
 
+        # Dance routine start
+        time.sleep(2)
+
+        # Step 1: Exciting start with a bow
+        spot.bow(pitch=0.2, body_height=0.2, sleep_after_point_reached=1)
+        time.sleep(2)
+
+        # Step 2: Spin around with velocity control
+        spot.move_by_velocity_control(v_x=0, v_y=0, v_rot=0.5, cmd_duration=5)
+        time.sleep(1)
+
+        # Step 3: Side step to the left and then to the right
+        spot.move_by_velocity_control(v_x=0, v_y=0.3, v_rot=0, cmd_duration=2)
+        time.sleep(2)
+        spot.move_by_velocity_control(v_x=0, v_y=-0.3, v_rot=0, cmd_duration=2)
+        time.sleep(2)
+
+        # Step 4: Move forward in a zigzag pattern
+        for _ in range(2):
+            spot.move_by_velocity_control(v_x=0.2, v_y=0.1, v_rot=0, cmd_duration=1)
+            time.sleep(1)
+            spot.move_by_velocity_control(v_x=0.2, v_y=-0.1, v_rot=0, cmd_duration=1)
+            time.sleep(1)
+
+        # Step 5: Final pose with a bow
+        spot.bow(pitch=-0.2, body_height=0.1, sleep_after_point_reached=1)
+        time.sleep(2)
+
+        # Dance routine end
+
+
 
 if __name__ == '__main__':
     main()
