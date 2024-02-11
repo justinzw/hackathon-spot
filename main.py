@@ -28,56 +28,42 @@ def main():
     # and to return lease + sit down at the end
     with SpotController(username=SPOT_USERNAME, password=SPOT_PASSWORD, robot_ip=ROBOT_IP) as spot:
 
+        # K-pop Dance Routine Start
         time.sleep(2)
-
-        # Move head to specified positions with intermediate time.sleep
-        spot.move_head_in_points(yaws=[0.2, 0],
-                                 pitches=[0.3, 0],
-                                 rolls=[0.4, 0],
-                                 sleep_after_point_reached=1)
-        time.sleep(3)
-
-        spot.make_stance(10,10)
-
-        time.sleep(3)
-
-        # Make Spot to move by goal_x meters forward and goal_y meters left
-        spot.move_to_goal(goal_x=0.5, goal_y=0)
-        time.sleep(3)
-
-        # Control Spot by velocity in m/s (or in rad/s for rotation)
-        spot.move_by_velocity_control(v_x=-0.3, v_y=0, v_rot=0, cmd_duration=2)
-        time.sleep(3)
-
-        # Dance routine start
-        time.sleep(2)
-
-        # Step 1: Exciting start with a bow
-        spot.bow(pitch=0.2, body_height=0.2, sleep_after_point_reached=1)
-        time.sleep(2)
-
-        # Step 2: Spin around with velocity control
-        spot.move_by_velocity_control(v_x=0, v_y=0, v_rot=0.5, cmd_duration=5)
+        
+        # Step 1: Dynamic Entry with a Bow and Head Tilt
+        spot.bow(pitch=0.15, body_height=-0.1, sleep_after_point_reached=1)
+        spot.move_head_in_points(yaws=[0.2], pitches=[0], rolls=[0.2], sleep_after_point_reached=0.5)
         time.sleep(1)
-
-        # Step 3: Side step to the left and then to the right
-        spot.move_by_velocity_control(v_x=0, v_y=0.3, v_rot=0, cmd_duration=2)
-        time.sleep(2)
-        spot.move_by_velocity_control(v_x=0, v_y=-0.3, v_rot=0, cmd_duration=2)
-        time.sleep(2)
-
-        # Step 4: Move forward in a zigzag pattern
+        
+        # Step 2: Quick Side Steps with Head Movements
         for _ in range(2):
-            spot.move_by_velocity_control(v_x=0.2, v_y=0.1, v_rot=0, cmd_duration=1)
-            time.sleep(1)
-            spot.move_by_velocity_control(v_x=0.2, v_y=-0.1, v_rot=0, cmd_duration=1)
-            time.sleep(1)
+            spot.move_by_velocity_control(v_x=0, v_y=0.25, v_rot=0, cmd_duration=1)
+            spot.move_head_in_points(yaws=[-0.2], pitches=[0], rolls=[-0.2], sleep_after_point_reached=0.5)
+            spot.move_by_velocity_control(v_x=0, v_y=-0.25, v_rot=0, cmd_duration=1)
+            spot.move_head_in_points(yaws=[0.2], pitches=[0], rolls=[0.2], sleep_after_point_reached=0.5)
+        time.sleep(1)
+        
+        # Step 3: Rotate with Style
+        spot.move_by_velocity_control(v_x=0, v_y=0, v_rot=1, cmd_duration=4)
+        time.sleep(1)
+        
+        # Step 4: Forward and Backward Movements with Pose
+        spot.move_to_goal(goal_x=0.5, goal_y=0)
+        spot.move_head_in_points(yaws=[0], pitches=[0.1], rolls=[0], sleep_after_point_reached=0.5)
+        time.sleep(1)
+        spot.move_to_goal(goal_x=-0.5, goal_y=0)
+        spot.move_head_in_points(yaws=[0], pitches=[-0.1], rolls=[0], sleep_after_point_reached=0.5)
+        time.sleep(1)
+        
+        # Step 5: Energetic Finale with Fast Spins and a Pose
+        spot.move_by_velocity_control(v_x=0, v_y=0, v_rot=-1.5, cmd_duration=5)
+        time.sleep(1)
+        spot.stand_at_height(body_height=0.2)
+        spot.move_head_in_points(yaws=[0], pitches=[0], rolls=[0], sleep_after_point_reached=1)
+        
+        # K-pop Dance Routine End
 
-        # Step 5: Final pose with a bow
-        spot.bow(pitch=-0.2, body_height=0.1, sleep_after_point_reached=1)
-        time.sleep(2)
-
-        # Dance routine end
 
 
 
