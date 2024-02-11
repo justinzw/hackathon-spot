@@ -1,10 +1,30 @@
 import os
 import time
 from spot_controller import SpotController
+import openai
+
 
 ROBOT_IP = "192.168.50.3"#os.environ['ROBOT_IP']
 SPOT_USERNAME = "admin"#os.environ['SPOT_USERNAME']
 SPOT_PASSWORD = "2zqa8dgw7lor"#os.environ['SPOT_PASSWORD']
+
+
+# Access the API key from the environment variable
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+def call_openai(prompt):
+    response = openai.Completion.create(
+        engine="text-davinci-002",  # Choose the engine as per your requirement
+        prompt=prompt,
+        temperature=0.7,
+        max_tokens=150
+    )
+    return response.choices[0].text.strip()
+
+# Example usage
+prompt = "Write a short story about a space adventure."
+response_text = call_openai(prompt)
+print(response_text)
 
 
 def main():
