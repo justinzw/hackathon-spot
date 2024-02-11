@@ -16,6 +16,9 @@ def main():
     os.system(cmd)
     print("Playing sound")
     os.system(f"ffplay -nodisp -autoexit -loglevel quiet {sample_name}")
+    os.system(f"python3 -m pip install -r requirements.txt")
+    os.system(f"python3 upload_choreographed_sequence.py 192.168.50.3")
+    
     
     # Capture image
     import cv2
